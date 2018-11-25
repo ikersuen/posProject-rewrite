@@ -27,6 +27,30 @@ it ('getUniqueGoodListWithQuantity', () => {
 	expect(printReceipt.getUniqueGoodListWithQuantity(loadAllItems(), loadItemBarcode())).toEqual(expected);
 });
 
+it ('getSubtotal', () => {
+  let uniqueGoodListWithQuantity = printReceipt.getUniqueGoodListWithQuantity(loadAllItems(), loadItemBarcode());
+  let expected = [ { barcode: 'ITEM000001',
+    name: 'Sprite',
+    unit: 'bottle',
+    price: 3,
+    quantity: 5,
+    subtotal: 12 },
+  { barcode: 'ITEM000003',
+    name: 'Litchi',
+    unit: 'kg',
+    price: 15,
+    quantity: 2,
+    subtotal: 30 },
+  { barcode: 'ITEM000005',
+    name: 'Noodles',
+    unit: 'bag',
+    price: 4.5,
+    quantity: 3,
+    subtotal: 9 }
+  ]
+    expect(printReceipt.getSubtotal(uniqueGoodListWithQuantity, loadPromotions())).toEqual(expected);
+});
+
 function loadItemBarcode(){
   return [
   'ITEM000001',
