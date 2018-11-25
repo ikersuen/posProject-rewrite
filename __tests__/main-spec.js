@@ -81,6 +81,13 @@ it ('countTotalPrice', () => {
 
 });
 
+it ('countSaving', () => {
+  let allReceiptGoodsInfo = printReceipt.getAllReceiptGoodsInfo(loadItemBarcode(), loadAllItems(), loadPromotions());
+
+  expect(printReceipt.countSaving(allReceiptGoodsInfo)).toBeCloseTo(7.5);
+
+});
+
 function loadItemBarcode(){
   return [
   'ITEM000001',

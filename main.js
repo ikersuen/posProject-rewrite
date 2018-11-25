@@ -101,4 +101,10 @@ function countTotalPrice(allReceiptGoodsInfo){
   return totalPrice
 }
 
-module.exports = {getUniqueGoodListWithQuantity, getSubtotal, getAllReceiptGoodsInfo, countTotalPrice}
+function countSaving(allReceiptGoodsInfo){
+  let saving = 0
+  allReceiptGoodsInfo.forEach(goods => saving += (goods.price * goods.quantity) - goods.subtotal)
+  return saving
+}
+
+module.exports = {getUniqueGoodListWithQuantity, getSubtotal, getAllReceiptGoodsInfo, countTotalPrice, countSaving}
