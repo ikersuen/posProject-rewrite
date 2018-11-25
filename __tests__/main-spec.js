@@ -74,6 +74,13 @@ it ('getAllReceiptGoodsInfo', () => {
     expect(printReceipt.getAllReceiptGoodsInfo(loadItemBarcode(), loadAllItems(), loadPromotions())).toEqual(expected);
 });
 
+it ('countTotalPrice', () => {
+  let allReceiptGoodsInfo = printReceipt.getAllReceiptGoodsInfo(loadItemBarcode(), loadAllItems(), loadPromotions());
+
+  expect(printReceipt.countTotalPrice(allReceiptGoodsInfo)).toBe(51);
+
+});
+
 function loadItemBarcode(){
   return [
   'ITEM000001',

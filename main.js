@@ -90,12 +90,15 @@ function getSubtotal(uniqueGoodListWithQuantity, discountList){
 
 function getAllReceiptGoodsInfo(barcodeList, InventoryList, discountList){
   let uniqueGoodListWithQuantity = getUniqueGoodListWithQuantity(InventoryList, barcodeList)
-
   let goodListWithSubtotal = getSubtotal(uniqueGoodListWithQuantity, discountList)
-
   let allReceiptGoodsInfo = goodListWithSubtotal
-
   return allReceiptGoodsInfo
 }
 
-module.exports = {getUniqueGoodListWithQuantity, getSubtotal, getAllReceiptGoodsInfo}
+function countTotalPrice(allReceiptGoodsInfo){
+  let totalPrice = 0
+  allReceiptGoodsInfo.forEach(goods => totalPrice += goods.subtotal)
+  return totalPrice
+}
+
+module.exports = {getUniqueGoodListWithQuantity, getSubtotal, getAllReceiptGoodsInfo, countTotalPrice}
