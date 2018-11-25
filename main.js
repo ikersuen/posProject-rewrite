@@ -67,12 +67,12 @@ function loadPromotions() {
 }
 
 function getUniqueGoodListWithQuantity(InventoryList, barcodeList){
-  let pureBarcodeList = barcodeList.map(barcode => barcode.split("-")[0])
+  let pureBarcodeList = barcodeList.map(barcode => barcode.split('-')[0])
   let uniquePureBarcodeList = pureBarcodeList.filter((barcode, pos) => pureBarcodeList.indexOf(barcode) == pos)
   let uniqueInventoryListOnRecipt = InventoryList.filter(inventory => uniquePureBarcodeList.includes(inventory.barcode));
   uniqueInventoryListOnRecipt.forEach(inventory => inventory.quantity = 0)
 
-  barcodeList.forEach(barcode => barcode.includes('-') ? uniqueInventoryListOnRecipt.find(inventory => inventory.barcode === barcode.split("-")[0]).quantity += parseFloat(barcode.split("-")[1]) : (uniqueInventoryListOnRecipt.forEach(inventory => inventory.barcode === barcode?inventory.quantity += 1 : 0 )))
+  barcodeList.forEach(barcode => barcode.includes('-') ? uniqueInventoryListOnRecipt.find(inventory => inventory.barcode === barcode.split("-")[0]).quantity += parseFloat(barcode.split('-')[1]) : (uniqueInventoryListOnRecipt.forEach(inventory => inventory.barcode === barcode?inventory.quantity += 1 : 0 )))
 
   let uniqueGoodListWithQuantity = uniqueInventoryListOnRecipt
 
@@ -88,4 +88,14 @@ function getSubtotal(uniqueGoodListWithQuantity, discountList){
   return goodListWithSubtotal
 }
 
-module.exports = {getUniqueGoodListWithQuantity, getSubtotal}
+function getAllReceiptGoodsInfo(barcodeList, InventoryList, discountList){
+  let uniqueGoodListWithQuantity = getUniqueGoodListWithQuantity(InventoryList, barcodeList)
+
+  let goodListWithSubtotal = getSubtotal(uniqueGoodListWithQuantity, discountList)
+
+  let allReceiptGoodsInfo = goodListWithSubtotal
+
+  return allReceiptGoodsInfo
+}
+
+module.exports = {getUniqueGoodListWithQuantity, getSubtotal, getAllReceiptGoodsInfo}
