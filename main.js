@@ -107,4 +107,15 @@ function countSaving(allReceiptGoodsInfo){
   return saving
 }
 
-module.exports = {getUniqueGoodListWithQuantity, getSubtotal, getAllReceiptGoodsInfo, countTotalPrice, countSaving}
+function createReceipt(allReceiptGoodsInfo, totalPrice){
+  let receipt = `***<store earning no money>Receipt ***\n`
+  allReceiptGoodsInfo.forEach(goods =>
+    {
+    receipt += `Name: ${goods.name}, Quantity: ${goods.quantity} ${goods.unit}, Unit price: ${goods.price.toFixed(2)} (yuan), Subtotal: ${goods.subtotal.toFixed(2)} (yuan)\n`
+    }
+  )
+  receipt += `----------------------\nTotal: ${totalPrice.toFixed(2)} (yuan)\nSaving: ${countSaving(allReceiptGoodsInfo).toFixed(2)} (yuan)\n**********************`
+  return receipt
+}
+
+module.exports = {getUniqueGoodListWithQuantity, getSubtotal, getAllReceiptGoodsInfo, countTotalPrice, countSaving, createReceipt}
