@@ -108,6 +108,22 @@ Saving: 7.50 (yuan)
 
 });
 
+it ('printReceipt', () => {
+
+  let expected =
+`***<store earning no money>Receipt ***
+Name: Sprite, Quantity: 5 bottle, Unit price: 3.00 (yuan), Subtotal: 12.00 (yuan)
+Name: Litchi, Quantity: 2 kg, Unit price: 15.00 (yuan), Subtotal: 30.00 (yuan)
+Name: Noodles, Quantity: 3 bag, Unit price: 4.50 (yuan), Subtotal: 9.00 (yuan)
+----------------------
+Total: 51.00 (yuan)
+Saving: 7.50 (yuan)
+**********************`
+
+  expect(printReceipt.printReceipt(loadItemBarcode(), loadAllItems(), loadPromotions())).toEqual(expected);
+
+});
+
 
 function loadItemBarcode(){
   return [

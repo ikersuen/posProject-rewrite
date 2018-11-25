@@ -118,4 +118,11 @@ function createReceipt(allReceiptGoodsInfo, totalPrice){
   return receipt
 }
 
-module.exports = {getUniqueGoodListWithQuantity, getSubtotal, getAllReceiptGoodsInfo, countTotalPrice, countSaving, createReceipt}
+function printReceipt(barcodeList, InventoryList, discountList){
+  let allReceiptGoodsInfo = getAllReceiptGoodsInfo(barcodeList, InventoryList, discountList)
+  let totalPrice = countTotalPrice(allReceiptGoodsInfo)
+  let receipt = createReceipt(allReceiptGoodsInfo, totalPrice)
+  return receipt
+}
+
+module.exports = {getUniqueGoodListWithQuantity, getSubtotal, getAllReceiptGoodsInfo, countTotalPrice, countSaving, createReceipt, printReceipt}
